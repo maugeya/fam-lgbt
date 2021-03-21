@@ -1,0 +1,32 @@
+.leftMenu {
+  flex: 1;
+}
+
+.navContainer {
+  background: red;
+  display: flex;
+  height: 3em;
+}
+
+.navLink {
+  font-weight: 500;
+  padding: 0.4rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.navLink:visited {
+  color: inherit;
+}
+
+.navLink:hover {
+  color: white;
+  transition: 0.2s;
+}
+
+.rightMenu {
+  align-items: center;
+  display: flex;
+  flex: 2;
+  justify-content: flex-end;
+}
