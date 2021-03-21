@@ -1,3 +1,4 @@
 *.env
 *.pyc
 .DStore
+node_modules/
