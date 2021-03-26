@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Register = () => {
+  let history = useHistory();
   const [inputValues, setInputValues] = useState({
     username: '',
     email: '',
@@ -29,6 +31,7 @@ const Register = () => {
         password: inputValues.password,
       });
       // TODO: send to Login page
+      history.push('/login');
     } catch (err) {
       setErrors([err.response.data]);
     }
