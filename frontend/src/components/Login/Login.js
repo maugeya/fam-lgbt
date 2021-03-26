@@ -10,6 +10,7 @@ const Login = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setErrors([]);
     try {
       const res = await axios.post('/api/auth/token/obtain/', {
         username: inputValues.username,

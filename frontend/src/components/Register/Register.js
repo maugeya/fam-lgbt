@@ -21,6 +21,7 @@ const Register = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    setErrors([]);
     try {
       const res = await axios.post('/api/auth/user/create/', {
         username: inputValues.username,
