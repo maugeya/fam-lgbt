@@ -1,5 +1,12 @@
+"""
+Authentication serializers
+"""
+
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
+from rest_framework.validators import UniqueValidator
+from django.db import IntegrityError
+
 from .models import CustomUser
 
 
@@ -15,14 +22,29 @@ class TokenObtainPairSerializer(TokenObtainPairSerializer):
 
 class CustomUserSerializer(serializers.Serializer):
     """
-    The serializer used for user centrict requests
+    The serializer used for user requests
     """
 
     email = serializers.EmailField(
-        required=True
+        required=True,
+        validators=[
+            UniqueValidator(
+                queryset=CustomUser.objects.all(),
+                message="Looks like you've already registered! Please try logging in."
+            )
+        ]
     )
-    username = serializers.CharField()
-    password = serializers.CharField(min_length=8, write_only=True)
+    username = serializers.CharField(
+        trim_whitespace=True,
+        required=True,
+        validators=[
+            UniqueValidator(
+                queryset=CustomUser.objects.all(),
+                message="This username has already been taken."
+            )
+        ]
+    )
+    password = serializers.CharField(min_length=8, write_only=True, required=True)
 
     class Meta:
         model = CustomUser
