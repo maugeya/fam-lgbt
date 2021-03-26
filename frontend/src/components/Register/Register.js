@@ -30,10 +30,9 @@ const Register = () => {
       });
       // TODO: send to Login page
     } catch (err) {
-      setErrors([...errors, err.response.data]);
+      setErrors([err.response.data]);
     }
   };
-
   return (
     <div>
       Register
