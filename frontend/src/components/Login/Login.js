@@ -10,7 +10,6 @@ const Login = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setErrors([]);
     try {
       const res = await axios.post('/api/auth/token/obtain/', {
         username: inputValues.username,
@@ -19,7 +18,7 @@ const Login = () => {
       console.log('res', res);
       // TODO: Send to Authenticated Home
     } catch (err) {
-      setErrors([...errors, err.response.data]);
+      setErrors([err.response.data]);
     }
   };
 
