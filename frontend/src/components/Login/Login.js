@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
+import axiosInstance from '../../axiosApi';
 
 const Login = () => {
+  let history = useHistory();
   const [inputValues, setInputValues] = useState({
     username: '',
     password: '',
@@ -11,11 +14,20 @@ const Login = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth/token/obtain/', {
-        username: inputValues.username,
-        password: inputValues.password,
-      });
-      console.log('res', res);
+      const res = await axiosInstance.post(
+        '/auth/token/obtain/',
+        {
+          username: inputValues.username,
+          password: inputValues.password,
+        }
+        // { withCredentials: true }
+      );
+      axiosInstance.defaults.headers['Authorization'] =
+        'JWT ' + res.data.access;
+      localStorage.setItem('access_token', res.data.access);
+      localStorage.setItem('refresh_token', res.data.refresh);
+      history.push('/hello');
+      return res.data;
       // TODO: Send to Authenticated Home
     } catch (err) {
       setErrors([err.response.data]);
