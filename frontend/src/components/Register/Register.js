@@ -30,7 +30,6 @@ const Register = () => {
         email: inputValues.email,
         password: inputValues.password,
       });
-      // TODO: send to Login page
       history.push('/login');
     } catch (err) {
       setErrors([err.response.data]);
