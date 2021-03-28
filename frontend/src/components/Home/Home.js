@@ -1,5 +1,11 @@
+import Counter from '../Counter/Counter';
+
 const Home = () => {
-  return <div>HOME PAGE</div>;
+  return (
+    <div>
+      <Counter />
+    </div>
+  );
 };
 
 export default Home;
