@@ -1,7 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
 import styles from './Nav.module.css';
+import axiosInstance from '../../axiosApi';
 
 const Nav = () => {
+  let history = useHistory();
+  const handleLogout = async () => {
+    try {
+      const res = await axiosInstance.post('/auth/logout/', {
+        refresh_token: localStorage.getItem('refresh_token'),
+      });
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      axiosInstance.defaults.headers['Authorization'] = null;
+      history.push('/');
+      return res;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <nav className={styles.navContainer}>
       <div className={styles.leftMenu}>
@@ -14,6 +32,7 @@ const Nav = () => {
         <Link className={styles.navLink} to='/login'>
           LOGIN
         </Link>
+        <button onClick={handleLogout}>Logout</button>
       </div>
     </nav>
   );
