@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import axiosInstance from '../../axiosApi';
+
 const Register = () => {
   let history = useHistory();
   const [inputValues, setInputValues] = useState({
@@ -25,12 +27,13 @@ const Register = () => {
     e.preventDefault();
     setErrors([]);
     try {
-      const res = await axios.post('/api/auth/user/create/', {
+      const res = await axiosInstance.post('/auth/user/create/', {
         username: inputValues.username,
         email: inputValues.email,
         password: inputValues.password,
       });
       history.push('/login');
+      return res;
     } catch (err) {
       setErrors([err.response.data]);
     }
