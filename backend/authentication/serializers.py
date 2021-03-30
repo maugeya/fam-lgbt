@@ -14,6 +14,16 @@ class TokenObtainPairSerializer(TokenObtainPairSerializer):
     """
     The serializer used for user login
     """
+
+    def validate(self, attrs):
+        """
+        Override validate method to also get user in data
+        """
+        data = super(TokenObtainPairSerializer, self).validate(attrs)
+        data.update({'user': {'id': self.user.id, 'username': self.user.username}})
+
+        return data
+
     @classmethod
     def get_token(cls, user):
         token = super(TokenObtainPairSerializer, cls).get_token(user)
