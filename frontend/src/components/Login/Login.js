@@ -1,9 +1,16 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import axiosInstance from '../../axiosApi';
+import {
+  loginRequest,
+  loginSuccess,
+  loginFail,
+} from '../../redux/User/user.actions';
 
 const Login = () => {
+  const dispatch = useDispatch();
   let history = useHistory();
   const [inputValues, setInputValues] = useState({
     username: '',
@@ -14,17 +21,24 @@ const Login = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
+      dispatch(loginRequest());
       const res = await axiosInstance.post('/auth/token/obtain/', {
         username: inputValues.username,
         password: inputValues.password,
       });
-      axiosInstance.defaults.headers['Authorization'] =
-        'JWT ' + res.data.access;
-      localStorage.setItem('access_token', res.data.access);
-      localStorage.setItem('refresh_token', res.data.refresh);
+      const { access: accessToken, refresh: refreshToken, user } = res.data;
+
+      axiosInstance.defaults.headers['Authorization'] = 'JWT ' + accessToken;
+
+      localStorage.setItem('access_token', accessToken);
+      localStorage.setItem('refresh_token', refreshToken);
+
+      dispatch(loginSuccess(user));
+
       history.push('/hello');
       return res.data;
     } catch (err) {
+      dispatch(loginFail());
       setErrors([err.response.data]);
     }
   };
