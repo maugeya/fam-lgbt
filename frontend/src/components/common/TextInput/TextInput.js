@@ -10,6 +10,10 @@ const TextInput = ({ inputName, type, handleOnChangeInput, value, errors }) => {
   const renderErrors = () => {
     const errorsForInput = getErrorsForInput();
 
+    if (!errorsForInput) {
+      return null;
+    }
+
     return errorsForInput.map((error, i) => (
       <p key={i} className={styles.errorContent}>
         {error}
@@ -19,8 +23,8 @@ const TextInput = ({ inputName, type, handleOnChangeInput, value, errors }) => {
 
   return (
     <div className={styles.inputWrapper}>
-      <label className={styles.inputLabel}>
-        {inputName}
+      <div className={styles.labelledInput}>
+        <label className={styles.inputLabel}>{inputName}</label>
         <input
           className={styles.textInput}
           type={type}
@@ -28,10 +32,14 @@ const TextInput = ({ inputName, type, handleOnChangeInput, value, errors }) => {
           onChange={handleOnChangeInput}
           value={value}
         />
-      </label>
+      </div>
       <div className={styles.errorContainer}>{renderErrors()}</div>
     </div>
   );
+};
+
+TextInput.defaultProps = {
+  errors: [],
 };
 
 TextInput.propTypes = {
