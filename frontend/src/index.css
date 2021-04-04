@@ -1,3 +1,11 @@
+:root {
+  --dark-grey: #676a6a;
+  --dark-pink: #f0c7bf;
+  --light-pink: #efe8e7;
+  --green: #61b9b8;
+  --yellow: #efd483;
+}
+
 body {
   margin: 0;
   font-family: 'Lato', sans-serif;
@@ -7,9 +15,4 @@ body {
 
 button {
   font-family: 'Lato', sans-serif;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
