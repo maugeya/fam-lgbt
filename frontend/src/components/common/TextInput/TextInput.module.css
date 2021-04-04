@@ -1,0 +1,21 @@
+.errorContainer {
+  margin-top: 2px;
+  text-align: right;
+}
+
+.errorContent {
+  margin: 0;
+  color: #d32f2f;
+}
+
+.inputLabel {
+  text-transform: capitalize;
+}
+
+.inputWrapper {
+  margin: 15px 0;
+}
+
+.textInput {
+  margin-left: 15px;
+}
