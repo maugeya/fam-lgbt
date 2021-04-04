@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import styles from './TextInput.module.css';
 
 const TextInput = ({ inputName, type, handleOnChangeInput, value, errors }) => {
@@ -30,6 +32,14 @@ const TextInput = ({ inputName, type, handleOnChangeInput, value, errors }) => {
       <div className={styles.errorContainer}>{renderErrors()}</div>
     </div>
   );
+};
+
+TextInput.propTypes = {
+  inputName: PropTypes.string,
+  type: PropTypes.string,
+  handleOnChangeInput: PropTypes.func,
+  value: PropTypes.string,
+  errors: PropTypes.array,
 };
 
 export default TextInput;
