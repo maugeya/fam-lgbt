@@ -53,7 +53,7 @@ axiosInstance.interceptors.response.use(
                 'JWT ' + response.data.access;
               originalRequest.headers['Authorization'] =
                 'JWT ' + response.data.access;
-              console.log('refresh happened');
+
               return axiosInstance(originalRequest);
             })
             .catch((err) => {
