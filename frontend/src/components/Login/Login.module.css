@@ -5,8 +5,11 @@
 }
 
 .loginForm {
+  background: var(--light-pink);
   border: 2px solid var(--dark-pink);
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
   margin-top: 15px;
   min-height: 300px;
   padding: 30px;
@@ -14,6 +17,7 @@
 
 .formContent {
   display: flex;
+  flex: 1;
   flex-direction: column;
 }
 
