@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import _ from 'lodash';
 
 import styles from './App.module.css';
 import Hello from './Hello/Hello';
@@ -11,6 +12,15 @@ import Toast from './common/Toast/Toast';
 
 function App() {
   const isLoggedIn = useSelector((state) => state.currentUser.loggedIn);
+  const alertMessages = useSelector((state) => state.alertMessages);
+
+  const renderToast = () => {
+    if (_.isEmpty(alertMessages)) {
+      return null;
+    } else {
+      return <Toast />;
+    }
+  };
 
   return (
     <Router>
@@ -30,7 +40,8 @@ function App() {
         </Route>
       </Switch>
       <div className={styles.toastContainer}>
-        <Toast />
+        {renderToast()}
+        {/*  */}
       </div>
     </Router>
   );
