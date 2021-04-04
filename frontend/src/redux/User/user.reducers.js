@@ -11,6 +11,7 @@ const INITIAL_STATE = {
   loginPending: false,
   loggedIn: false,
   user: {},
+  errors: [],
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {
@@ -21,6 +22,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         loginPending: true,
         loggedIn: false,
         user: {},
+        errors: [],
       };
     case LOGIN_SUCCESS:
       return {
@@ -28,6 +30,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         loginPending: false,
         loggedIn: true,
         user: action.user,
+        errors: [],
       };
     case LOGIN_FAIL:
       return {
@@ -35,6 +38,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         loginPending: false,
         loggedIn: false,
         user: {},
+        errors: action.errors,
       };
     case LOGOUT_REQUEST:
       return {
@@ -42,6 +46,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         loginPending: false,
         loggedIn: true,
         user: state.user,
+        errors: [],
       };
     case LOGOUT_SUCCESS:
       return INITIAL_STATE;
