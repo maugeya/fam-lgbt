@@ -16,7 +16,9 @@ const Nav = ({ isLoggedIn }) => {
     if (isLoggedIn) {
       return (
         <div className={styles.rightMenu}>
-          <button onClick={handleLogout}>Logout</button>
+          <button className={styles.logoutButton} onClick={handleLogout}>
+            Logout
+          </button>
         </div>
       );
     }

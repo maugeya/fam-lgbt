@@ -2,6 +2,18 @@
   flex: 1;
 }
 
+.logoutButton {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.logoutButton:hover {
+  cursor: pointer;
+}
+
 .navContainer {
   background: #f0c7bf;
   box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
@@ -24,7 +36,8 @@
   color: inherit;
 }
 
-.navLink:hover {
+.navLink:hover,
+.logoutButton:hover {
   color: white;
   transition: 0.2s;
 }
