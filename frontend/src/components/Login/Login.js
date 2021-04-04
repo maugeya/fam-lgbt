@@ -1,46 +1,28 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import axiosInstance from '../../axiosApi';
-import {
-  loginRequest,
-  loginSuccess,
-  loginFail,
-} from '../../redux/User/user.actions';
+import { userLoginService } from '../../redux/User/user.services';
 
-const Login = () => {
+const Login = (props) => {
   const dispatch = useDispatch();
   let history = useHistory();
+
+  const loginErrors = useSelector((state) => state.currentUser.errors);
+
   const [inputValues, setInputValues] = useState({
     username: '',
     password: '',
   });
-  const [errors, setErrors] = useState([]);
 
-  const handleFormSubmit = async (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    try {
-      dispatch(loginRequest());
-      const res = await axiosInstance.post('/auth/token/obtain/', {
-        username: inputValues.username,
-        password: inputValues.password,
-      });
-      const { access: accessToken, refresh: refreshToken, user } = res.data;
-
-      axiosInstance.defaults.headers['Authorization'] = 'JWT ' + accessToken;
-
-      localStorage.setItem('access_token', accessToken);
-      localStorage.setItem('refresh_token', refreshToken);
-
-      dispatch(loginSuccess(user));
-
-      history.push('/hello');
-      return res.data;
-    } catch (err) {
-      dispatch(loginFail());
-      setErrors([err.response.data]);
-    }
+    userLoginService(
+      inputValues.username,
+      inputValues.password,
+      history,
+      dispatch
+    );
   };
 
   const handleOnChangeInput = (e) => {
