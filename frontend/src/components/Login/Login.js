@@ -7,7 +7,7 @@ import Layout from '../Layout/Layout';
 import styles from './Login.module.css';
 import TextInput from '../common/TextInput/TextInput';
 
-const Login = (props) => {
+const Login = () => {
   const dispatch = useDispatch();
   let history = useHistory();
 
