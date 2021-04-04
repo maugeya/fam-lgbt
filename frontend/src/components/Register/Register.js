@@ -2,7 +2,10 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import styles from './Register.module.css';
 import axiosInstance from '../../axiosApi';
+import Layout from '../Layout/Layout';
+import TextInput from '../common/TextInput/TextInput';
 
 const Register = () => {
   let history = useHistory();
@@ -16,7 +19,6 @@ const Register = () => {
 
   const handleOnChangeInput = (e) => {
     const { name, value } = e.target;
-
     setInputValues({
       ...inputValues,
       [name]: value,
@@ -39,45 +41,38 @@ const Register = () => {
     }
   };
   return (
-    <div>
-      Register
-      <form onSubmit={handleOnSubmit}>
-        <div></div>
-        <label>
-          Username
-          <input
-            type='text'
-            placeholder='username'
-            name='username'
-            onChange={handleOnChangeInput}
-            value={inputValues.username}
-          />
-        </label>
-        <label>
-          Email
-          <input
-            type='email'
-            placeholder='email'
-            name='email'
-            onChange={handleOnChangeInput}
-            value={inputValues.email}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type='password'
-            placeholder='password'
-            name='password'
-            onChange={handleOnChangeInput}
-            value={inputValues.password}
-          />
-        </label>
-        <div>
-          <button type='submit'>Register</button>
-        </div>
-      </form>
-    </div>
+    <Layout>
+      <div className={styles.container}>
+        <h2>Register</h2>
+        <form className={styles.registerForm} onSubmit={handleOnSubmit}>
+          <div className={styles.formContent}>
+            <TextInput
+              inputName='username'
+              type='text'
+              handleOnChangeInput={handleOnChangeInput}
+              value={inputValues.username}
+            />
+            <TextInput
+              inputName='email'
+              type='email'
+              handleOnChangeInput={handleOnChangeInput}
+              value={inputValues.email}
+            />
+            <TextInput
+              inputName='password'
+              type='password'
+              handleOnChangeInput={handleOnChangeInput}
+              value={inputValues.password}
+            />
+          </div>
+          <div className={styles.formFooter}>
+            <button type='submit' className={styles.registerSubmitButton}>
+              Register
+            </button>
+          </div>
+        </form>
+      </div>
+    </Layout>
   );
 };
 

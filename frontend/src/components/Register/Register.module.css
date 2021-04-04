@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.registerForm {
+  background: var(--light-pink);
+  border: 2px solid var(--dark-pink);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  min-height: 300px;
+  padding: 30px;
+}
+
+.formContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.formFooter {
+  margin: 15px 0;
+}
+
+.registerSubmitButton {
+  height: 2rem;
+  width: 100%;
+}
