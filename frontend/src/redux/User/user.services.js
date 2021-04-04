@@ -7,6 +7,7 @@ import {
   logoutSuccess,
   logoutFail,
 } from '../../redux/User/user.actions';
+import { alertSucess } from '../Alert/alert.actions';
 
 export const userLoginService = async (
   username,
@@ -20,11 +21,18 @@ export const userLoginService = async (
       username: username,
       password: password,
     });
+
     const { access: accessToken, refresh: refreshToken, user } = res.data;
+
     axiosInstance.defaults.headers['Authorization'] = 'JWT ' + accessToken;
     localStorage.setItem('access_token', accessToken);
     localStorage.setItem('refresh_token', refreshToken);
+
     dispatch(loginSuccess(user));
+
+    const loggedInMessage = `Logged in as ${username}.`;
+    dispatch(alertSucess(loggedInMessage));
+
     history.push('/hello');
     return res.data;
   } catch (err) {
