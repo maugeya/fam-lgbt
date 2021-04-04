@@ -1,20 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { userLoginService } from '../../redux/User/user.services';
 import Layout from '../Layout/Layout';
+import styles from './Login.module.css';
+import TextInput from '../common/TextInput/TextInput';
 
 const Login = (props) => {
   const dispatch = useDispatch();
   let history = useHistory();
 
-  const loginErrors = useSelector((state) => state.currentUser.errors);
-
   const [inputValues, setInputValues] = useState({
     username: '',
     password: '',
   });
+
+  const loginErrors = useSelector((state) => state.currentUser.errors);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -36,33 +38,29 @@ const Login = (props) => {
 
   return (
     <Layout>
-      <div>
-        Login
-        <form onSubmit={handleFormSubmit}>
-          <div>
-            <label>
-              Username
-              <input
-                type='text'
-                placeholder='username'
-                name='username'
-                onChange={handleOnChangeInput}
-                value={inputValues.username}
-              />
-            </label>
-            <label>
-              Password
-              <input
-                type='password'
-                placeholder='password'
-                name='password'
-                onChange={handleOnChangeInput}
-                value={inputValues.password}
-              />
-            </label>
+      <div className={styles.container}>
+        <h2>Login</h2>
+        <form className={styles.loginForm} onSubmit={handleFormSubmit}>
+          <div className={styles.formContent}>
+            <TextInput
+              inputName='username'
+              type='text'
+              handleOnChangeInput={handleOnChangeInput}
+              value={inputValues.username}
+              errors={loginErrors}
+            />
+            <TextInput
+              inputName='password'
+              type='password'
+              handleOnChangeInput={handleOnChangeInput}
+              value={inputValues.password}
+              errors={loginErrors}
+            />
           </div>
-          <div>
-            <button type='submit'>Log in</button>
+          <div className={styles.formFooter}>
+            <button className={styles.loginSubmitButton} type='submit'>
+              Log in
+            </button>
           </div>
         </form>
       </div>
