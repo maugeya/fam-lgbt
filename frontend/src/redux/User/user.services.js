@@ -7,7 +7,7 @@ import {
   logoutSuccess,
   logoutFail,
 } from '../../redux/User/user.actions';
-import { alertSucess } from '../Alert/alert.actions';
+import { alertSucess, alertFail } from '../Alert/alert.actions';
 
 export const userLoginService = async (
   username,
@@ -37,6 +37,10 @@ export const userLoginService = async (
     return res.data;
   } catch (err) {
     dispatch(loginFail([err.response.data]));
+
+    if (err.response.data.hasOwnProperty('detail')) {
+      dispatch(alertFail(err.response.data['detail']));
+    }
   }
 };
 
