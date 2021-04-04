@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { userLoginService } from '../../redux/User/user.services';
+import Layout from '../Layout/Layout';
 
 const Login = (props) => {
   const dispatch = useDispatch();
@@ -34,36 +35,38 @@ const Login = (props) => {
   };
 
   return (
-    <div>
-      Login
-      <form onSubmit={handleFormSubmit}>
-        <div>
-          <label>
-            Username
-            <input
-              type='text'
-              placeholder='username'
-              name='username'
-              onChange={handleOnChangeInput}
-              value={inputValues.username}
-            />
-          </label>
-          <label>
-            Password
-            <input
-              type='password'
-              placeholder='password'
-              name='password'
-              onChange={handleOnChangeInput}
-              value={inputValues.password}
-            />
-          </label>
-        </div>
-        <div>
-          <button type='submit'>Log in</button>
-        </div>
-      </form>
-    </div>
+    <Layout>
+      <div>
+        Login
+        <form onSubmit={handleFormSubmit}>
+          <div>
+            <label>
+              Username
+              <input
+                type='text'
+                placeholder='username'
+                name='username'
+                onChange={handleOnChangeInput}
+                value={inputValues.username}
+              />
+            </label>
+            <label>
+              Password
+              <input
+                type='password'
+                placeholder='password'
+                name='password'
+                onChange={handleOnChangeInput}
+                value={inputValues.password}
+              />
+            </label>
+          </div>
+          <div>
+            <button type='submit'>Log in</button>
+          </div>
+        </form>
+      </div>
+    </Layout>
   );
 };
 

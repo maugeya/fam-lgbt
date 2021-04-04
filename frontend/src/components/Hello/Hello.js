@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+
+import Layout from '../Layout/Layout';
 import axiosInstance from '../../axiosApi';
 
 const Hello = () => {
@@ -20,7 +22,11 @@ const Hello = () => {
     getMessage();
   }, []);
 
-  return <div>{message}</div>;
+  return (
+    <Layout>
+      <div>{message}</div>
+    </Layout>
+  );
 };
 
 export default Hello;
