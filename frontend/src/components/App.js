@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import './App.css';
 import Hello from './Hello/Hello';
@@ -8,9 +9,11 @@ import Nav from './Nav/Nav';
 import Register from './Register/Register';
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.currentUser.loggedIn);
+
   return (
     <Router>
-      <Nav />
+      <Nav isLoggedIn={isLoggedIn} />
       <Switch>
         <Route exact path='/'>
           <Home />
