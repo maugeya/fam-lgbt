@@ -5,18 +5,23 @@ import styles from './Nav.module.css';
 
 import { userLogoutService } from '../../redux/User/user.services';
 
-const Nav = () => {
+const Nav = ({ isLoggedIn }) => {
   const dispatch = useDispatch();
   let history = useHistory();
   const handleLogout = () => {
     userLogoutService(dispatch, history);
   };
 
-  return (
-    <nav className={styles.navContainer}>
-      <div className={styles.leftMenu}>
-        <Link to='/home'>LOGO</Link>
-      </div>
+  const renderAuthenticationItems = () => {
+    if (isLoggedIn) {
+      return (
+        <div className={styles.rightMenu}>
+          <button onClick={handleLogout}>Logout</button>
+        </div>
+      );
+    }
+
+    return (
       <div className={styles.rightMenu}>
         <Link className={styles.navLink} to='/register'>
           REGISTER
@@ -24,8 +29,16 @@ const Nav = () => {
         <Link className={styles.navLink} to='/login'>
           LOGIN
         </Link>
-        <button onClick={handleLogout}>Logout</button>
       </div>
+    );
+  };
+
+  return (
+    <nav className={styles.navContainer}>
+      <div className={styles.leftMenu}>
+        <Link to='/home'>LOGO</Link>
+      </div>
+      {renderAuthenticationItems()}
     </nav>
   );
 };
