@@ -8,6 +8,7 @@ import {
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  CLEAR_USER_AUTH_ERRORS,
 } from './user.types';
 
 const INITIAL_STATE = {
@@ -75,6 +76,12 @@ export const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         errors: action.errors,
+      };
+
+    case CLEAR_USER_AUTH_ERRORS:
+      return {
+        ...state,
+        errors: [],
       };
 
     default:
