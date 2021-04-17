@@ -1,20 +1,23 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Register.module.css';
-import axiosInstance from '../../axiosApi';
 import Layout from '../Layout/Layout';
 import TextInput from '../common/TextInput/TextInput';
+import { userRegisterService } from '../../redux/User/user.services';
 
 const Register = () => {
+  const dispatch = useDispatch();
   let history = useHistory();
+
   const [inputValues, setInputValues] = useState({
     username: '',
     email: '',
     password: '',
   });
 
-  const [errors, setErrors] = useState([]);
+  const registerErrors = useSelector((state) => state.currentUser.errors);
 
   const handleOnChangeInput = (e) => {
     const { name, value } = e.target;
@@ -26,19 +29,15 @@ const Register = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    setErrors([]);
-    try {
-      const res = await axiosInstance.post('/auth/user/create/', {
-        username: inputValues.username,
-        email: inputValues.email,
-        password: inputValues.password,
-      });
-      history.push('/login');
-      return res;
-    } catch (err) {
-      setErrors([err.response.data]);
-    }
+    userRegisterService(
+      inputValues.username,
+      inputValues.email,
+      inputValues.password,
+      history,
+      dispatch
+    );
   };
+
   return (
     <Layout>
       <div className={styles.container}>
@@ -50,18 +49,21 @@ const Register = () => {
               type='text'
               handleOnChangeInput={handleOnChangeInput}
               value={inputValues.username}
+              errors={registerErrors}
             />
             <TextInput
               inputName='email'
               type='email'
               handleOnChangeInput={handleOnChangeInput}
               value={inputValues.email}
+              errors={registerErrors}
             />
             <TextInput
               inputName='password'
               type='password'
               handleOnChangeInput={handleOnChangeInput}
               value={inputValues.password}
+              errors={registerErrors}
             />
           </div>
           <div className={styles.formFooter}>
