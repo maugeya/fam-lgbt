@@ -90,8 +90,11 @@ export const userLogoutService = async (dispatch, history) => {
     dispatch(logoutSuccess());
     history.push('/');
     return res;
-  } catch (e) {
+  } catch (err) {
     dispatch(logoutFail());
-    console.log(e);
+
+    if (err.response.data.hasOwnProperty('detail')) {
+      dispatch(alertFail(err.response.data['detail']));
+    }
   }
 };
