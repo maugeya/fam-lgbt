@@ -6,8 +6,42 @@ import {
   logoutRequest,
   logoutSuccess,
   logoutFail,
+  registerRequest,
+  registerSuccess,
+  registerFail,
 } from '../../redux/User/user.actions';
 import { alertSucess, alertFail } from '../Alert/alert.actions';
+
+export const userRegisterService = async (
+  username,
+  email,
+  password,
+  history,
+  dispatch
+) => {
+  try {
+    dispatch(registerRequest());
+    const res = await axiosInstance.post('/auth/user/create/', {
+      username: username,
+      email: email,
+      password: password,
+    });
+
+    dispatch(registerSuccess(username));
+    const registerSuccessMessage = `${username} has been registered.`;
+    dispatch(alertSucess(registerSuccessMessage));
+
+    history.push('/login');
+
+    return res.data;
+  } catch (err) {
+    dispatch(registerFail([err.response.data]));
+
+    if (err.response.data.hasOwnProperty('detail')) {
+      dispatch(alertFail(err.response.data['detail']));
+    }
+  }
+};
 
 export const userLoginService = async (
   username,
