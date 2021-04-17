@@ -12,7 +12,6 @@ const Toast = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (!_.isEmpty(toastAlert)) {
-        console.log('there is an alert!');
         dispatch(alertClear());
       }
     }, 5000);
