@@ -5,7 +5,24 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
 } from './user.types';
+
+export const registerRequest = () => ({
+  type: REGISTER_REQUEST,
+});
+
+export const registerSuccess = (username) => ({
+  type: REGISTER_SUCCESS,
+  username,
+});
+
+export const registerFail = (errors) => ({
+  type: REGISTER_FAIL,
+  errors,
+});
 
 export const loginRequest = () => ({
   type: LOGIN_REQUEST,
