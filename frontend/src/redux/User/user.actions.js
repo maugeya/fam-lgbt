@@ -8,6 +8,7 @@ import {
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  CLEAR_USER_AUTH_ERRORS,
 } from './user.types';
 
 export const registerRequest = () => ({
@@ -48,4 +49,8 @@ export const logoutSuccess = () => ({
 
 export const logoutFail = () => ({
   type: LOGOUT_FAIL,
+});
+
+export const clearUserAuthErrors = () => ({
+  type: CLEAR_USER_AUTH_ERRORS,
 });
