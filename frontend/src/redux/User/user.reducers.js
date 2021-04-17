@@ -5,6 +5,9 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAIL,
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
 } from './user.types';
 
 const INITIAL_STATE = {
@@ -24,6 +27,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         user: {},
         errors: [],
       };
+
     case LOGIN_SUCCESS:
       return {
         ...state,
@@ -32,6 +36,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         user: action.user,
         errors: [],
       };
+
     case LOGIN_FAIL:
       return {
         ...state,
@@ -40,6 +45,7 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         user: {},
         errors: action.errors,
       };
+
     case LOGOUT_REQUEST:
       return {
         ...state,
@@ -48,10 +54,29 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         user: state.user,
         errors: [],
       };
+
     case LOGOUT_SUCCESS:
       return INITIAL_STATE;
+
     case LOGOUT_FAIL:
       return state;
+
+    case REGISTER_REQUEST:
+      return { ...state, errors: [] };
+
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        user: { ...state.user, username: action.username },
+        errors: [],
+      };
+
+    case REGISTER_FAIL:
+      return {
+        ...state,
+        errors: action.errors,
+      };
+
     default:
       return state;
   }
