@@ -6,6 +6,10 @@ import styles from './Register.module.css';
 import Layout from '../Layout/Layout';
 import TextInput from '../common/TextInput/TextInput';
 import { userRegisterService } from '../../redux/User/user.services';
+import {
+  registerPasswordsError,
+  registerPasswordsMatch,
+} from '../../redux/User/user.actions';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -15,6 +19,7 @@ const Register = () => {
     username: '',
     email: '',
     password: '',
+    password2: '',
   });
 
   const registerErrors = useSelector((state) => state.currentUser.errors);
@@ -25,6 +30,17 @@ const Register = () => {
       ...inputValues,
       [name]: value,
     });
+  };
+
+  const handleConfirmPassword = (e) => {
+    setInputValues({
+      ...inputValues,
+      password2: e.target.value,
+    });
+    if (e.target.value !== inputValues.password) {
+      return dispatch(registerPasswordsError());
+    }
+    return dispatch(registerPasswordsMatch());
   };
 
   const handleOnSubmit = async (e) => {
@@ -63,6 +79,13 @@ const Register = () => {
               type='password'
               handleOnChangeInput={handleOnChangeInput}
               value={inputValues.password}
+              errors={registerErrors}
+            />
+            <TextInput
+              inputName='password2'
+              type='password'
+              handleOnChangeInput={handleConfirmPassword}
+              value={inputValues.password2}
               errors={registerErrors}
             />
           </div>
