@@ -3,12 +3,12 @@ import { useState, useEffect } from 'react';
 import Layout from '../Layout/Layout';
 import axiosInstance from '../../axiosApi';
 
-const Hello = () => {
+const EditProfile = () => {
   const [message, setMessage] = useState('');
 
   const getMessage = async () => {
     try {
-      let response = await axiosInstance.get('/auth/hello/');
+      let response = await axiosInstance.get('/auth/edit-profile/');
       const message = response.data.hello;
       setMessage(message);
       return message;
@@ -29,4 +29,4 @@ const Hello = () => {
   );
 };
 
-export default Hello;
+export default EditProfile;
