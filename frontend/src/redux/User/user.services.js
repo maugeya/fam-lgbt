@@ -74,7 +74,7 @@ export const userLoginService = async (
     const loggedInMessage = `Logged in as ${username}.`;
     dispatch(alertSucess(loggedInMessage));
 
-    history.push('/hello');
+    history.push('/edit-profile');
     return res.data;
   } catch (err) {
     dispatch(loginFail([err.response.data]));
