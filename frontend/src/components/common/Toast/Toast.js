@@ -29,14 +29,16 @@ const Toast = () => {
       }}
     >
       <div className={`${styles.notification}, ${styles.toast}`}>
-        <button type='button' onClick={() => dispatch(alertClear())}>
-          X
-        </button>
-        <div className={styles.notificationImage}>
-          <img src='' alt='' />
+        <div className={styles.toastHeader}>
+          <button
+            className={styles.closeToastButton}
+            type='button'
+            onClick={() => dispatch(alertClear())}
+          >
+            ✖️
+          </button>
         </div>
-        <div>
-          <p className={styles.notificationTitle}>{toastAlert.type}</p>
+        <div className={styles.toastContent}>
           <p className={styles.notificationMessage}>{toastAlert.message}</p>
         </div>
       </div>
