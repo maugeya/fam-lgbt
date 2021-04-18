@@ -9,6 +9,8 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   CLEAR_USER_AUTH_ERRORS,
+  REGISTER_PASSWORDS_FAIL,
+  REGISTER_PASSWORDS_MATCH,
 } from './user.types';
 
 const INITIAL_STATE = {
@@ -76,6 +78,20 @@ export const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         errors: action.errors,
+      };
+
+    case REGISTER_PASSWORDS_FAIL:
+      return {
+        ...state,
+        errors: action.errors,
+      };
+
+    case REGISTER_PASSWORDS_MATCH:
+      return {
+        ...state,
+        errors: state.errors.filter(
+          (error) => !error.hasOwnProperty('password2')
+        ),
       };
 
     case CLEAR_USER_AUTH_ERRORS:
