@@ -23,7 +23,10 @@ const Toast = () => {
   return (
     <div
       className={styles.notificationContainer}
-      style={{ backgroundColor: toastAlert.backgroundColor }}
+      style={{
+        backgroundColor: toastAlert.backgroundColor,
+        border: toastAlert.border,
+      }}
     >
       <div className={`${styles.notification}, ${styles.toast}`}>
         <button type='button' onClick={() => dispatch(alertClear())}>

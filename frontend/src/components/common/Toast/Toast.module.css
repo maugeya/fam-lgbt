@@ -1,5 +1,5 @@
 .notificationContainer {
-  border: 1px solid black;
+  border-radius: 4px;
   position: fixed;
   bottom: 12px;
   right: -300px;

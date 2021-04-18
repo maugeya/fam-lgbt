@@ -8,13 +8,15 @@ export const alertReducer = (state = INITIAL_STATE, action) => {
       return {
         type: 'Success',
         message: action.message,
-        backgroundColor: '#5cb85c',
+        backgroundColor: '#cee9ce',
+        border: '1px solid #5cb85c',
       };
     case ALERT_FAIL:
       return {
         type: 'Fail',
         message: action.message,
-        backgroundColor: '#d9534f',
+        backgroundColor: '#f3cbca',
+        border: '1px solid #d9534f',
       };
     case ALERT_CLEAR:
       return INITIAL_STATE;
