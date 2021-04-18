@@ -49,6 +49,7 @@ const Register = () => {
       inputValues.username,
       inputValues.email,
       inputValues.password,
+      inputValues.password2,
       history,
       dispatch
     );

@@ -16,11 +16,18 @@ export const userRegisterService = async (
   username,
   email,
   password,
+  password2,
   history,
   dispatch
 ) => {
   try {
     dispatch(registerRequest());
+
+    if (password !== password2) {
+      dispatch(registerFail([{ password2: "Passwords don't match" }]));
+      return null;
+    }
+
     const res = await axiosInstance.post('/auth/user/create/', {
       username: username,
       email: email,
