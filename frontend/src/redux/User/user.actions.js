@@ -9,6 +9,8 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   CLEAR_USER_AUTH_ERRORS,
+  REGISTER_PASSWORDS_FAIL,
+  REGISTER_PASSWORDS_MATCH,
 } from './user.types';
 
 export const registerRequest = () => ({
@@ -53,4 +55,13 @@ export const logoutFail = () => ({
 
 export const clearUserAuthErrors = () => ({
   type: CLEAR_USER_AUTH_ERRORS,
+});
+
+export const registerPasswordsError = () => ({
+  type: REGISTER_PASSWORDS_FAIL,
+  errors: [{ password2: "Passwords don't match!" }],
+});
+
+export const registerPasswordsMatch = () => ({
+  type: REGISTER_PASSWORDS_MATCH,
 });
