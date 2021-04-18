@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
 
 import styles from './App.module.css';
-import Hello from './Hello/Hello';
+import EditProfile from './EditProfile/EditProfile';
 import Home from './Home/Home';
 import Login from './Login/Login';
 import Nav from './Nav/Nav';
@@ -45,8 +45,8 @@ function App({ history }) {
         <Route path='/login'>
           <Login />
         </Route>
-        <Route path='/hello'>
-          <Hello />
+        <Route path='/edit-profile'>
+          <EditProfile />
         </Route>
       </Switch>
       <div className={styles.toastContainer}>
