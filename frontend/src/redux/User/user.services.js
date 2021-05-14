@@ -12,15 +12,9 @@ import {
 } from '../../redux/User/user.actions';
 import { alertSucess, alertFail } from '../Alert/alert.actions';
 
-export const userRegisterService = async (
-  username,
-  email,
-  password,
-  password2,
-  history,
-  dispatch
-) => {
+export const userRegisterService = async (inputValues, history, dispatch) => {
   try {
+    const { password, password2, username, email } = inputValues;
     dispatch(registerRequest());
 
     if (password !== password2) {

@@ -15,12 +15,14 @@ const Register = () => {
   const dispatch = useDispatch();
   let history = useHistory();
 
-  const [inputValues, setInputValues] = useState({
+  const initialState = {
     username: '',
     email: '',
     password: '',
     password2: '',
-  });
+  };
+
+  const [inputValues, setInputValues] = useState(initialState);
 
   const registerErrors = useSelector((state) => state.currentUser.errors);
 
@@ -45,14 +47,7 @@ const Register = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    userRegisterService(
-      inputValues.username,
-      inputValues.email,
-      inputValues.password,
-      inputValues.password2,
-      history,
-      dispatch
-    );
+    userRegisterService(inputValues, history, dispatch);
   };
 
   return (
