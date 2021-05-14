@@ -16,7 +16,11 @@ const Nav = ({ isLoggedIn }) => {
     if (isLoggedIn) {
       return (
         <div className={styles.rightMenu}>
-          <button className={styles.logoutButton} onClick={handleLogout}>
+          <button
+            className={styles.logoutButton}
+            onClick={handleLogout}
+            data-testid='logout-button'
+          >
             Logout
           </button>
         </div>
@@ -25,10 +29,14 @@ const Nav = ({ isLoggedIn }) => {
 
     return (
       <div className={styles.rightMenu}>
-        <Link className={styles.navLink} to='/register'>
+        <Link
+          className={styles.navLink}
+          to='/register'
+          data-testid='register-link'
+        >
           REGISTER
         </Link>
-        <Link className={styles.navLink} to='/login'>
+        <Link className={styles.navLink} to='/login' data-testid='login-link'>
           LOGIN
         </Link>
       </div>
@@ -36,9 +44,11 @@ const Nav = ({ isLoggedIn }) => {
   };
 
   return (
-    <nav className={styles.navContainer}>
+    <nav className={styles.navContainer} data-testid='nav'>
       <div className={styles.leftMenu}>
-        <Link to='/home'>LOGO</Link>
+        <Link to='/home' data-testid='logo-link'>
+          LOGO
+        </Link>
       </div>
       {renderAuthenticationItems()}
     </nav>
