@@ -3,20 +3,23 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './components/App';
-import store from './redux/store';
+import { store, persistor } from './redux/store';
 
 const history = createBrowserHistory();
 
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <Router>
-        <App history={history} />
-      </Router>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <App history={history} />
+        </Router>
+      </PersistGate>
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')
