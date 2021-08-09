@@ -4,12 +4,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import _ from 'lodash';
 
 import styles from './App.module.css';
-import EditProfile from './EditProfile/EditProfile';
-import Home from './Home/Home';
-import Login from './Login/Login';
-import Nav from './Nav/Nav';
-import Register from './Register/Register';
-import Toast from './common/Toast/Toast';
+import EditProfile from './EditProfile';
+import Home from './Home';
+import Login from './Login';
+import Nav from './Nav';
+import Register from './Register';
+import Toast from './common/Toast';
 import { clearUserAuthErrors } from '../redux/User/user.actions';
 
 function App({ history }) {
