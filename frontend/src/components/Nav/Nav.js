@@ -1,11 +1,12 @@
 import { Link, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Nav.module.css';
 
 import { userLogoutService } from '../../redux/User/user.services';
 
-const Nav = ({ isLoggedIn }) => {
+const Nav = () => {
+  const isLoggedIn = useSelector((state) => state.currentUser.loggedIn);
   const dispatch = useDispatch();
   let history = useHistory();
   const handleLogout = () => {

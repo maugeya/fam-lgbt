@@ -16,7 +16,6 @@ function App({ history }) {
   let location = useLocation();
   const dispatch = useDispatch();
 
-  const isLoggedIn = useSelector((state) => state.currentUser.loggedIn);
   const alertMessages = useSelector((state) => state.alertMessages);
 
   // clear user errors when location changes
@@ -34,7 +33,7 @@ function App({ history }) {
 
   return (
     <div>
-      <Nav isLoggedIn={isLoggedIn} />
+      <Nav />
       <Switch>
         <Route exact path='/'>
           <Home />
