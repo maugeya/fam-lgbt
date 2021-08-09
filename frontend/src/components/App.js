@@ -9,6 +9,7 @@ import Home from './Home';
 import Login from './Login';
 import Nav from './Nav';
 import Register from './Register';
+import ProtectedRoute from './common/ProtectedRoute';
 import Toast from './common/Toast';
 import { clearUserAuthErrors } from '../redux/User/user.actions';
 
@@ -44,9 +45,8 @@ function App({ history }) {
         <Route path='/login'>
           <Login />
         </Route>
-        <Route path='/edit-profile'>
-          <EditProfile />
-        </Route>
+
+        <ProtectedRoute path='/edit-profile' component={EditProfile} />
       </Switch>
       <div className={styles.toastContainer}>
         {renderToast()}
