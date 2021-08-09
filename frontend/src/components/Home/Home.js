@@ -1,8 +1,12 @@
+import Layout from '../Layout';
+
 const Home = () => {
   return (
-    <div data-testid='home-container'>
-      <h1>HOME PAGE</h1>
-    </div>
+    <Layout>
+      <div data-testid='home-container'>
+        <h1>HOME PAGE</h1>
+      </div>
+    </Layout>
   );
 };
 

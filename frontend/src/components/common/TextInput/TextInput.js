@@ -38,16 +38,18 @@ const TextInput = ({ inputName, type, handleOnChangeInput, value, errors }) => {
   );
 };
 
-TextInput.defaultProps = {
-  errors: [],
-};
-
 TextInput.propTypes = {
-  inputName: PropTypes.string,
+  inputName: PropTypes.string.isRequired,
   type: PropTypes.string,
-  handleOnChangeInput: PropTypes.func,
+  handleOnChangeInput: PropTypes.func.isRequired,
   value: PropTypes.string,
   errors: PropTypes.array,
+};
+
+TextInput.defaultProps = {
+  errors: [],
+  type: 'text',
+  value: '',
 };
 
 export default TextInput;

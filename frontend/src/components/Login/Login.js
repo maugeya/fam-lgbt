@@ -3,9 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { userLoginService } from '../../redux/User/user.services';
-import Layout from '../Layout/Layout';
+import Layout from '../Layout';
 import styles from './Login.module.css';
-import TextInput from '../common/TextInput/TextInput';
+import TextInput from '../common/TextInput';
 
 const Login = () => {
   const dispatch = useDispatch();

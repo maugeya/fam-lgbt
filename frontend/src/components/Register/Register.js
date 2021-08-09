@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Register.module.css';
-import Layout from '../Layout/Layout';
-import TextInput from '../common/TextInput/TextInput';
+import Layout from '../Layout';
+import TextInput from '../common/TextInput';
 import { userRegisterService } from '../../redux/User/user.services';
 import {
   registerPasswordsError,
