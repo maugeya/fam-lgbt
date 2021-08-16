@@ -47,7 +47,7 @@ const Nav = () => {
   return (
     <nav className={styles.navContainer} data-testid='nav'>
       <div className={styles.leftMenu}>
-        <Link to='/home' data-testid='logo-link'>
+        <Link to='/' data-testid='logo-link'>
           LOGO
         </Link>
       </div>
