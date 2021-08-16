@@ -8,6 +8,7 @@ from rest_framework.validators import UniqueValidator
 from django.db import IntegrityError
 
 from .models import CustomUser
+from user.serializers import ProfileSerializer
 
 
 class TokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -20,7 +21,16 @@ class TokenObtainPairSerializer(TokenObtainPairSerializer):
         Override validate method to also get user in data
         """
         data = super(TokenObtainPairSerializer, self).validate(attrs)
-        data.update({'user': {'id': self.user.id, 'username': self.user.username}})
+        data.update({
+            'user': {
+                'id': self.user.id,
+                'username': self.user.username,
+                'profile': {
+                    'bio': self.user.profile.bio,
+                    'location': self.user.profile.location
+                }
+            }
+        })
 
         return data
 
@@ -55,6 +65,8 @@ class CustomUserSerializer(serializers.Serializer):
         ]
     )
     password = serializers.CharField(min_length=8, write_only=True, required=True)
+
+    profile = ProfileSerializer(source='profile', read_only=True)
 
     class Meta:
         model = CustomUser
